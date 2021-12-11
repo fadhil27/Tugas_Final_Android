@@ -1,5 +1,6 @@
 package com.fadhil.tugas_final_android.UI.DetailFish
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import com.fadhil.tugas_final_android.Model.DataFishItem
 import com.fadhil.tugas_final_android.R
@@ -34,6 +36,10 @@ class DetailFishFragment : Fragment() {
         getStringFromHtml(detailLocation, selectedFish!!.Location)
         getStringFromHtml(detailPopulation, selectedFish!!.Population_Status)
 
+        initShareListener(shareDesc, getStringFromHtml(selectedFish!!.Physical_Description))
+        initShareListener(shareHabitat, getStringFromHtml(selectedFish!!.Habitat))
+        initShareListener(shareLocation, getStringFromHtml(selectedFish!!.Location))
+        initShareListener(shareStatus, getStringFromHtml(selectedFish!!.Population_Status))
     }
 
     private fun getStringFromHtml(view: TextView, txt: String) {
@@ -41,6 +47,30 @@ class DetailFishFragment : Fragment() {
             view.text = Html.fromHtml(txt, Html.FROM_HTML_MODE_LEGACY)
         } else {
             view.text = Html.fromHtml(txt)
+        }
+    }
+
+    private fun getStringFromHtml(txt: String): String {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(txt, Html.FROM_HTML_MODE_LEGACY).toString()
+        } else {
+            Html.fromHtml(txt).toString()
+        }
+    }
+
+    private fun initShareListener(btn: Button, txt: String) {
+        btn.setOnClickListener {
+            val text = "${selectedFish!!.Species_Name}\n\n$txt"
+
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(
+                    Intent.EXTRA_TEXT, text)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
     }
 
