@@ -9,5 +9,14 @@
         android:id="@+id/lishFishFragment"
         android:name="com.fadhil.tugas_final_android.UI.ListFish.LishFishFragment"
         android:label="fragment_lish_fish"
-        tools:layout="@layout/fragment_lish_fish" />
+        tools:layout="@layout/fragment_lish_fish" >
+        <action
+            android:id="@+id/action_lishFishFragment_to_detailFishFragment"
+            app:destination="@id/detailFishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFishFragment"
+        android:name="com.fadhil.tugas_final_android.UI.DetailFish.DetailFishFragment"
+        android:label="fragment_detail_fish"
+        tools:layout="@layout/fragment_detail_fish" />
 </navigation>

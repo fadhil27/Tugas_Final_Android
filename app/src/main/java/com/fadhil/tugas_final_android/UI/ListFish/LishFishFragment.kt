@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.tugas_final_android.Model.DataFishItem
 import com.fadhil.tugas_final_android.R
+import com.fadhil.tugas_final_android.UI.DetailFish.DetailFishFragment
 import kotlinx.android.synthetic.main.fragment_lish_fish.*
 import kotlinx.coroutines.launch
 
@@ -29,7 +31,8 @@ class LishFishFragment : Fragment() {
 
         adapter = FishAdapter(object : FishAdapter.Listener {
             override fun onItemClick(fish: DataFishItem) {
-                TODO("Not yet implemented")
+                DetailFishFragment.selectedFish = fish
+                findNavController().navigate(R.id.action_lishFishFragment_to_detailFishFragment)
             }
         })
 

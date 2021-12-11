@@ -28,6 +28,9 @@ class FishAdapter(private val listener: FishAdapter.Listener): RecyclerView.Adap
                     .into(fishThumb)
 
                 fishName.text = fish.Species_Name
+                this.setOnClickListener {
+                    listener.onItemClick(fish)
+                }
             }
         }
     }
