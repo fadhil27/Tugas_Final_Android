@@ -29,6 +29,11 @@ class FishAdapter(private val listener: FishAdapter.Listener): RecyclerView.Adap
         }
     }
 
+    fun setData(list: MutableList<DataFishItem>) {
+        this.listFish = list
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_fish, parent, false)
         return Holder(view)
