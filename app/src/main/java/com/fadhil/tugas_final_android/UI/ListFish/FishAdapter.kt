@@ -1,10 +1,12 @@
 package com.fadhil.tugas_final_android.UI.ListFish
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.tugas_final_android.Model.DataFishItem
+import com.fadhil.tugas_final_android.Model.ImageGallery
 import com.fadhil.tugas_final_android.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_fish.view.*
@@ -20,6 +22,7 @@ class FishAdapter(private val listener: FishAdapter.Listener): RecyclerView.Adap
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(fish: DataFishItem, listener: Listener) {
             with(itemView) {
+
                 Picasso.get()
                     .load(fish.Species_Illustration_Photo.src)
                     .into(fishThumb)

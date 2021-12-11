@@ -18,7 +18,9 @@ class LishFishViewModel: ViewModel() {
             try {
                 response = RetrofitClient.instance.getListFish()
                 if(response.isSuccessful) {
-                    adapter.setData(response.body()!!)
+                    val response = response.body()!!
+                    listFish = response
+                    adapter.setData(listFish)
                 }
             } catch (e: Exception) {
                 Log.e(TAG, "${e.message}")
